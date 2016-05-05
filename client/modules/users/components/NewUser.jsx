@@ -1,17 +1,38 @@
 import React from 'react';
 import { Col, Panel, Input, ButtonInput, Glyphicon } from 'react-bootstrap';
 
-const NewUser = ({ content }) => (
-  <Col xs={12} sm={6} smOffset={3}>
-    <Panel>
-      <h1>Register</h1>
-      <form>
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <ButtonInput bsStyle="primary" type="submit" value="Sign Up"/>
-      </form>
-    </Panel>
-  </Col>
-);
+class NewUser extends React.Component {
+  createUser(e) {
+    e.preventDefault();
+    const { create } = this.props;
+    const { email, password } = this.refs;
+
+    create(email.getValue(), password.getValue());
+    email.getInputDOMNode().value = '';
+    password.getInputDOMNode().value = '';
+  }
+
+  render() {
+    const { error } = this.props;
+    return (<Col xs={12} sm={6} smOffset={3}>
+      <Panel>
+        <h1>Register</h1>
+        {error ? <p style={{ color: 'red' }}>{ error }</p> : null}
+        <form>
+          <Input ref="email" type="email" placeholder="Email" />
+          <Input ref="password" type="password" placeholder="Password" />
+          <ButtonInput onClick={this.createUser.bind(this)}
+            bsStyle="primary" type="submit" value="Sign Up"
+          />
+        </form>
+      </Panel>
+    </Col>);
+  }
+}
+
+NewUser.propTypes = {
+  create: React.PropTypes.object,
+  error: React.PropTypes.object,
+};
 
 export default NewUser;
