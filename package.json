@@ -16,14 +16,15 @@
     "babel-preset-react": "6.x.x",
     "babel-preset-stage-2": "6.x.x",
     "babel-root-slash-import": "1.x.x",
-    "chai": "3.x.x",
+    "chai": "^3.5.0",
     "enzyme": "^2.2.0",
     "eslint": "^2.9.0",
     "eslint-plugin-react": "^5.0.1",
-    "mocha": "2.x.x",
+    "mocha": "^2.4.5",
     "react-addons-test-utils": "^15.0.2",
     "react-dom": "^15.0.2",
-    "sinon": "1.17.x"
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0"
   },
   "dependencies": {
     "domready": "^1.0.8",
