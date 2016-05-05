@@ -2,8 +2,8 @@ import React from 'react';
 import { mount } from 'react-mounter';
 import Layout from './components/MainLayout.jsx';
 
-import ItemList from '../items/components/ItemList.jsx';
-import EditItem from '../items/components/EditItem.jsx';
+import ItemList from '../items/containers/ItemList';
+import ItemEdit from '../items/containers/ItemEdit';
 
 import NewUser from '../users/containers/NewUser';
 import Login from '../users/containers/Login';
@@ -14,6 +14,8 @@ import CategoryNew from '../items/containers/CategoryNew';
 export default function (injectDeps, { FlowRouter }) {
   const MainLayoutCtx = injectDeps(Layout);
 
+  // Items
+  // ---------------------------------------------------------------------------
   FlowRouter.route('/', {
     name: 'items.list',
     action() {
@@ -22,12 +24,19 @@ export default function (injectDeps, { FlowRouter }) {
       });
     },
   });
-
   FlowRouter.route('/edit', {
     name: 'items.edit',
     action() {
       mount(MainLayoutCtx, {
-        content: () => (<EditItem />),
+        content: () => (<ItemEdit />),
+      });
+    },
+  });
+  FlowRouter.route('/edit/:itemId', {
+    name: 'items.edit',
+    action({ itemId }) {
+      mount(MainLayoutCtx, {
+        content: () => (<ItemEdit itemId={itemId} />),
       });
     },
   });
