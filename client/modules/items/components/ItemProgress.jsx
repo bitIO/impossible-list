@@ -1,12 +1,8 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { ProgressBar } from 'react-bootstrap';
 
-const ItemList = ({ content }) => (
-  <Row className="show-grid">
-    <Col xs={12}>
-      <h1>This is the new content</h1>
-     </Col>
-  </Row>
+const ItemProgress = ({ content }) => (
+  <ProgressBar now={70} label="%(percent)s%" />
 );
 
-export default ItemList;
+export default ItemProgress;
