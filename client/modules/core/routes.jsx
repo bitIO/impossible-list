@@ -8,6 +8,9 @@ import EditItem from '../items/components/EditItem.jsx';
 import NewUser from '../users/containers/NewUser';
 import Login from '../users/containers/Login';
 
+import CategoryList from '../items/containers/CategoryList';
+import CategoryNew from '../items/containers/CategoryNew';
+
 export default function (injectDeps, { FlowRouter }) {
   const MainLayoutCtx = injectDeps(Layout);
 
@@ -52,6 +55,26 @@ export default function (injectDeps, { FlowRouter }) {
     action() {
       Meteor.logout();
       FlowRouter.go('/');
+    },
+  });
+
+  // Categories
+  // ---------------------------------------------------------------------------
+  FlowRouter.route('/categories', {
+    name: 'categories.list',
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<CategoryList />),
+      });
+    },
+  });
+
+  FlowRouter.route('/categories/new/', {
+    name: 'categories.new',
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<CategoryNew />),
+      });
     },
   });
 }
