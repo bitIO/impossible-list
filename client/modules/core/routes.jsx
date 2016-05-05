@@ -6,9 +6,11 @@ import ItemList from '../items/components/ItemList.jsx';
 import EditItem from '../items/components/EditItem.jsx';
 
 import NewUser from '../users/containers/NewUser';
+import Login from '../users/containers/Login';
 
 export default function (injectDeps, { FlowRouter }) {
   const MainLayoutCtx = injectDeps(Layout);
+
   FlowRouter.route('/', {
     name: 'items.list',
     action() {
@@ -17,6 +19,7 @@ export default function (injectDeps, { FlowRouter }) {
       });
     },
   });
+
   FlowRouter.route('/edit', {
     name: 'items.edit',
     action() {
@@ -26,12 +29,29 @@ export default function (injectDeps, { FlowRouter }) {
     },
   });
 
+  // User register, login and logout
+  // ---------------------------------------------------------------------------
   FlowRouter.route('/register', {
     name: 'users.new',
     action() {
       mount(MainLayoutCtx, {
         content: () => (<NewUser />),
       });
+    },
+  });
+  FlowRouter.route('/login', {
+    name: 'users.login',
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<Login />),
+      });
+    },
+  });
+  FlowRouter.route('/logout', {
+    name: 'users.logout',
+    action() {
+      Meteor.logout();
+      FlowRouter.go('/');
     },
   });
 }
