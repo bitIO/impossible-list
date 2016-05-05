@@ -1,12 +1,13 @@
 import React from 'react';
 import Item from './Item.jsx';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Glyphicon } from 'react-bootstrap';
 
 const ItemList = ({ content }) => (
   <Row className="show-grid">
     <Col xs={12}>
-      <Item />
+      <a href="/edit"><Glyphicon glyph="plus" /> New Item</a>
     </Col>
+    <Item />
   </Row>
 );
 
