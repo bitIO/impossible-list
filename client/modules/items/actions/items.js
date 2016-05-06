@@ -12,6 +12,15 @@ export default {
     });
     FlowRouter.go('/');
   },
+  update({ Meteor, LocalState, FlowRouter }, id, name, description, due) {
+    console.log('update.action', id, name, description, due);
+    Meteor.call('items.update', id, name, description, due, (err) => {
+      if (err) {
+        return LocalState.set('SAVING_ERROR', err.message);
+      }
+    });
+    FlowRouter.go('/');
+  },
 
   clearErrors({ LocalState }) {
     return LocalState.set('SAVING_ERROR', null);

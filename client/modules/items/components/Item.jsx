@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input, Row, Col, Panel, Glyphicon } from 'react-bootstrap';
+import moment from 'moment';
 
 class Item extends React.Component {
   markComplete() {
@@ -10,9 +11,12 @@ class Item extends React.Component {
   }
 
   render() {
-    const { item } = this.props;
+    const { item, currentDate } = this.props;
+    const color = moment(Number(item.due)).isBefore(currentDate) ?
+      '#f00' : '#e3e3e3';
+
     return (<Col xs={4}>
-      <Panel>
+      <Panel style={{ border: `solid 1px ${color}` }}>
         <Row>
           <Col xs={10}><h2>{ item.name }</h2></Col>
           <Col xs={2}>
@@ -20,7 +24,12 @@ class Item extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={12}><p>{item.description}</p></Col>
+          <Col xs={12}>
+            <p>{item.description}</p>
+            <p>
+              {item.due ? moment(Number(item.due)).format('MM/DD/YYYY') : ''}
+            </p>
+          </Col>
         </Row>
 
         <Row>
@@ -40,6 +49,7 @@ class Item extends React.Component {
 
 Item.propTypes = {
   item: React.PropTypes.object,
+  currentDate: React.PropTypes.object,
 };
 
 export default Item;

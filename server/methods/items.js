@@ -25,6 +25,18 @@ export default function () {
 
       Items.insert(item);
     },
+    'items.update'(id, name, description, due) {
+      check(id, String);
+      check(name, String);
+      check(description, String);
+      check(due, String);
+
+      const item = { name, description, due };
+
+      Items.update({ _id: id }, {
+        $set: item,
+      });
+    },
     'items.markComplete'(complete, itemId) {
       check(complete, Boolean);
       check(itemId, String);
