@@ -6,7 +6,12 @@ export const composer = ({ context }, onData) => {
   const { Meteor, Collections } = context();
   if (Meteor.subscribe('items.list').ready()) {
     const items = Collections.Items.find({}, { sort: { due: -1 } }).fetch();
-    onData(null, { items, currentDate: moment() });
+
+    const totalItems = Collections.Items.find().count();
+    const completedItems = Collections.Items.find({ complete: true }).count();
+    const percentage = Math.round((completedItems / totalItems) * 100);
+
+    onData(null, { items, currentDate: moment(), percentage });
   }
 };
 

@@ -4,9 +4,11 @@ import { Row, Col, Glyphicon } from 'react-bootstrap';
 
 import ItemProgress from './ItemProgress.jsx';
 
-const ItemList = ({ items, currentDate }) => (
+const ItemList = ({ items, currentDate, percentage }) => (
   <Row>
-    <Row><Col xs={12} sm={6}><ItemProgress /></Col></Row>
+    <Row>
+      <Col xs={12} sm={6}><ItemProgress percentage={percentage}/></Col>
+    </Row>
 
     <Row className="show-grid">
       <Col xs={12}>
