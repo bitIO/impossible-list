@@ -1,40 +1,90 @@
 import React from 'react';
-import { Col, Panel, Input, ButtonInput } from 'react-bootstrap';
+import Input from 'react-toolbox/lib/input';
+import Button from 'react-toolbox/lib/button';
+import Snackbar from 'react-toolbox/lib/snackbar';
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+    this.login = this.login.bind(this);
+  }
+
+  handleChange(name, value) {
+    this.setState({ ...this.state, [name]: value });
+  }
+
   login(e) {
     e.preventDefault();
+    e.stopPropagation();
 
     const { loginUser } = this.props;
-    const { email, password } = this.refs;
+    const { email, password } = this.state;
 
-    loginUser(email.getValue(), password.getValue());
-    email.getInputDOMNode().value = '';
-    password.getInputDOMNode().value = '';
+    loginUser(email, password);
+
+    this.setState({ email: '', password: '' });
   }
-  render() {
-    const { error } = this.props;
 
-    return (<Col xs={12} sm={6} smOffset={3}>
-      <Panel>
-        <h1>Login</h1>
-        {error ? <p style={{ color: 'red' }}>{ error }</p> : null}
-        <form>
-          <Input ref="email" type="email" placeholder="Email" />
-          <Input ref="password" type="password" placeholder="Password" />
-          <ButtonInput onClick={this.login.bind(this)}
-            bsStyle="primary" type="submit" value="Login"
-          />
-        </form>
-      </Panel>
-    </Col>);
+  renderError() {
+    if (this.props.error) {
+      return (<Snackbar
+        action="Dismiss"
+        active={true}
+        icon="question_answer"
+        label={this.props.error}
+        timeout={1000}
+        ref="snackbar"
+        onTimeout={() => {
+          console.log('onTimeout', this);
+          this.refs.snackbar.setState({
+            ...this.refs.snackbar.state,
+            active: false,
+          });
+        }}
+        onClick={() => {
+          this.refs.snackbar.setState({
+            ...this.refs.snackbar.state,
+            active: false,
+          });
+        }}
+        type="cancel"
+      />);
+    }
+  }
+
+  render() {
+    return (<section>
+      {this.renderError()}
+      <h5>Login</h5>
+      <form>
+        <Input
+          type="email"
+          label="Email address"
+          icon="email"
+          value={this.state.email}
+          onChange={this.handleChange.bind(this, 'email')}
+        />
+        <Input
+          type="password"
+          label="Password"
+          icon="vpn_key"
+          value={this.state.password}
+          onChange={this.handleChange.bind(this, 'password')}
+        />
+        <Button icon="input" label="Submit" raised primary onClick={this.login} />
+      </form>
+    </section>);
   }
 
 }
 
 Login.propTypes = {
-  loginUser: React.PropTypes.object,
-  error: React.PropTypes.object,
+  loginUser: React.PropTypes.func,
+  error: React.PropTypes.string,
 };
 
 export default Login;

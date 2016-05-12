@@ -17,7 +17,8 @@ export default {
     FlowRouter.go('/');
   },
   clearErrors({ LocalState }) {
-    return LocalState.set('SAVING_ERROR', null);
+    LocalState.set('CREATE_USER_ERROR', null);
+    LocalState.set('LOGIN_ERROR', null);
   },
   login({ Meteor, LocalState, FlowRouter }, email, password) {
     if (!email) {
@@ -28,7 +29,12 @@ export default {
     }
     LocalState.set('LOGIN_ERROR', null);
 
-    Meteor.loginWithPassword(email, password);
-    FlowRouter.go('/');
+    Meteor.loginWithPassword(email, password, (err) => {
+      if (err) {
+        LocalState.set('LOGIN_ERROR', err.meesage);
+      } else {
+        FlowRouter.go('/');
+      }
+    });
   },
 };
