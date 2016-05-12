@@ -1,4 +1,7 @@
 {
+  "ecmaFeatures": {
+    "experimentalObjectRestSpread": true,
+  },
   "extends": "airbnb",
   "rules": {
     "arrow-body-style": 0,
