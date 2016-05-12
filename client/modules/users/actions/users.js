@@ -1,6 +1,3 @@
-/* global Accounts: false */
-/* global FlowRouter: false */
-
 export default {
   create({ Meteor, LocalState }, email, password) {
     if (!email) {

@@ -3,6 +3,13 @@
     "experimentalObjectRestSpread": true,
   },
   "extends": "airbnb",
+  "globals": {
+    "Accounts": true,
+    "Meteor": true,
+    "FlowRouter": true,
+    "Collections": true,
+    "Tracker": true
+  },
   "rules": {
     "arrow-body-style": 0,
     "prefer-arrow-callback": 0,

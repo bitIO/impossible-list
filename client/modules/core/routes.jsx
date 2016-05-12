@@ -1,4 +1,3 @@
-/* global Meteor */
 import React from 'react';
 import { mount } from 'react-mounter';
 import MainLayout from './components/MainLayout.jsx';
