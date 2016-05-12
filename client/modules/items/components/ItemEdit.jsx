@@ -1,60 +1,83 @@
+import Button from 'react-toolbox/lib/button';
+import DatePicker from 'react-toolbox/lib/date_picker';
+import Input from 'react-toolbox/lib/input';
+import Link from 'react-toolbox/lib/link';
 import React from 'react';
-import { Col, Panel, Input, ButtonInput, Glyphicon } from 'react-bootstrap';
-import DateTimeField from 'react-bootstrap-datetimepicker';
 import moment from 'moment';
 
 class ItemEdit extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: '',
+      description: '',
+      due: new Date(),
+    };
+
+    if (props.item) {
+      this.state.name = props.item.name;
+      this.state.description = props.item.description;
+      this.state.due = new Date(props.item.due);
+    }
+
+    this.createItem = this.createItem.bind(this);
+  }
 
   createItem(e) {
     e.preventDefault();
     e.stopPropagation();
 
     const { create, update, item, itemId } = this.props;
-    const { name, description, due } = this.refs;
+    const { name, description, due } = this.state;
 
-    if (!item) {
-      create(name.getValue(), description.getValue(), due.getValue());
-    } else {
-      update(itemId, name.getValue(), description.getValue(), due.getValue());
-    }
+    const opType = item ? update : create;
+    opType(name, description, due.getTime(), itemId);
 
-    name.getInputDOMNode().value = '';
-    description.getInputDOMNode().value = '';
+    this.setState({ name: '', description: '', due: '' });
+  }
+
+  handleChange(name, value) {
+    this.setState({ ...this.state, [name]: value });
   }
 
   render() {
     const { item } = this.props;
-    return (<Col xs={12} sm={6} smOffset={3}>
-      <Panel>
-        <a href="/"><Glyphicon glyph="chevron-left" /> Back to Items</a>
-        <h1>{item ? 'Edit' : 'Add'} Item</h1>
-        <form>
-          <Input
-            ref="name"
-            type="text"
-            placeholder="Name"
-            defaultValue={item ? item.name : ''}
-          />
-          <Input
-            ref="description"
-            type="textarea"
-            placeholder="Description"
-            defaultValue={item ? item.description : ''}
-          />
-          <DateTimeField
-            ref="due"
-            inputFormat="MM/DD/Y"
-            defaultText={ item ?
-              moment(Number(item.due)).format('MM/DD/Y') :
-              moment().format('MM/DD/Y')
-            }
-          />
-          <ButtonInput onClick={this.createItem.bind(this)}
-            bsStyle="primary" type="submit" value="Save Item"
-          />
-        </form>
-      </Panel>
-    </Col>);
+    const opType = item ? 'Edit' : 'Add';
+    return (<form>
+      <Link href="/" icon="keyboard_arrow_left" > Back to Items</Link>
+      <h5>{opType} Item</h5>
+
+      <Input
+        type="text"
+        label="Name"
+        value={this.state.name}
+        ref="name"
+        onChange={this.handleChange.bind(this, 'name')}
+      />
+      <Input
+        type="text"
+        label="Description"
+        multiline
+        value={this.state.description}
+        ref="description"
+        onChange={this.handleChange.bind(this, 'description')}
+      />
+
+      <DatePicker
+        label="Due date"
+        minDate={new Date()}
+        onChange={this.handleChange.bind(this, 'due')}
+        value={this.state.due}
+      />
+      <Button
+        icon="input"
+        label="Add item"
+        onClick={this.createItem}
+        raised
+        primary
+      />
+    </form>);
   }
 }
 

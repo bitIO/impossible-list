@@ -18,7 +18,7 @@ export default function () {
     'items.create'(name, description, due) {
       check(name, String);
       check(description, String);
-      check(due, String);
+      check(due, Number);
 
       const createdAt = new Date();
       const item = { name, description, due, createdAt };
@@ -29,7 +29,7 @@ export default function () {
       check(id, String);
       check(name, String);
       check(description, String);
-      check(due, String);
+      check(due, Number);
 
       const item = { name, description, due };
 
