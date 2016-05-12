@@ -19,23 +19,42 @@
     "chai": "^3.5.0",
     "enzyme": "^2.2.0",
     "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^8.0.0",
+    "eslint-plugin-import": "^1.7.0",
+    "eslint-plugin-jsx-a11y": "^1.1.0",
     "eslint-plugin-react": "^5.0.1",
     "mocha": "^2.4.5",
-    "moment": "^2.13.0",
     "react-addons-test-utils": "^15.0.2",
-    "react-dom": "^15.0.2",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
+    "core-js": "^2.3.0",
     "domready": "^1.0.8",
     "mantra-core": "^1.2.0",
     "meteor-node-stubs": "~0.2.0",
     "moment": "^2.13.0",
+    "normalize.css": "^4.1.1",
     "react": "^15.0.2",
+    "react-addons-css-transition-group": "^15.0.2",
     "react-bootstrap": "^0.29.3",
     "react-bootstrap-datetimepicker": "0.0.22",
     "react-dom": "^15.0.2",
-    "react-mounter": "^1.2.0"
+    "react-mounter": "^1.2.0",
+    "react-toolbox": "^0.16.2"
+  },
+  "cssModules": {
+    "extensions": [
+      "scss"
+    ],
+    "globalVariables": [
+      "node_modules/react-toolbox/lib/_colors.scss",
+      { "theme-building": true },
+      "client/toolbox-theme.scss"
+    ],
+    "outputJsFilePath": {
+      ".*node_modules/.*": "{dirname}/{basename}"
+    }
   }
 }
