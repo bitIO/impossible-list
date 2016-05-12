@@ -5,9 +5,6 @@ import ItemProgress from './ItemProgress.jsx';
 
 const ItemList = ({ items, currentDate, percentage }) => (<div>
   <ItemProgress percentage={percentage} />
-  <a href="/edit">
-    <i className="fa fa-home"></i> New Item
-  </a>
   {items.map(item => (
     <Item key={item._id} item={item} currentDate={currentDate} />
   ))}

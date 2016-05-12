@@ -33,13 +33,12 @@ class Login extends React.Component {
     if (this.props.error) {
       return (<Snackbar
         action="Dismiss"
-        active={true}
+        active
         icon="question_answer"
         label={this.props.error}
         timeout={1000}
         ref="snackbar"
         onTimeout={() => {
-          console.log('onTimeout', this);
           this.refs.snackbar.setState({
             ...this.refs.snackbar.state,
             active: false,
@@ -76,6 +75,7 @@ class Login extends React.Component {
           onChange={this.handleChange.bind(this, 'password')}
         />
         <Button icon="input" label="Submit" raised primary onClick={this.login} />
+        <Button icon="input" label="Register" href="/register" />
       </form>
     </section>);
   }
