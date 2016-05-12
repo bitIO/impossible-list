@@ -1,24 +1,26 @@
 import React from 'react';
-import Item from './Item.jsx';
-import { Row, Col, Glyphicon } from 'react-bootstrap';
 
+import Item from './Item.jsx';
 import ItemProgress from './ItemProgress.jsx';
 
-const ItemList = ({ items, currentDate, percentage }) => (
-  <Row>
-    <Row>
-      <Col xs={12} sm={6}><ItemProgress percentage={percentage}/></Col>
-    </Row>
+const ItemList = ({ items, currentDate, percentage }) => (<div>
+  <ItemProgress percentage={percentage} />
+  <a href="/edit">
+    <i className="fa fa-home"></i> New Item
+  </a>
+  {items.map(item => (
+    <Item key={item._id} item={item} currentDate={currentDate} />
+  ))}
+</div>);
 
-    <Row className="show-grid">
-      <Col xs={12}>
-        <a href="/edit"><Glyphicon glyph="plus" /> New Item</a>
-      </Col>
-      {items.map(item => (
-         <Item key={item._id} item={item} currentDate={currentDate} />
-      ))}
-    </Row>
-  </Row>
-);
+ItemList.propTypes = {
+  items: React.PropTypes.array,
+  currentDate: React.PropTypes.object,
+  percentage: React.PropTypes.number,
+};
+
+ItemList.defaultProps = {
+  percentage: 0,
+};
 
 export default ItemList;

@@ -7,9 +7,9 @@ export const composer = ({ context }, onData) => {
   if (Meteor.subscribe('items.list').ready()) {
     const items = Collections.Items.find({}, { sort: { due: -1 } }).fetch();
 
-    const totalItems = Collections.Items.find().count();
-    const completedItems = Collections.Items.find({ complete: true }).count();
-    const percentage = Math.round((completedItems / totalItems) * 100);
+    const total = Collections.Items.find().count() || 1;
+    const completed = Collections.Items.find({ complete: true }).count() || 0;
+    const percentage = Math.round((completed / total) * 100);
 
     onData(null, { items, currentDate: moment(), percentage });
   }
