@@ -1,3 +1,4 @@
+/* global Meteor */
 import React from 'react';
 import { mount } from 'react-mounter';
 import MainLayout from './components/MainLayout.jsx';
@@ -13,6 +14,13 @@ import CategoryNew from '../items/containers/CategoryNew';
 
 export default function (injectDeps, { FlowRouter }) {
   const MainLayoutCtx = injectDeps(MainLayout);
+
+  // ensure there is a logged in user
+  FlowRouter.triggers.enter((context, redirect) => {
+    if (!Meteor.user()) {
+      redirect('users.login');
+    }
+  }, { except: ['users.login', 'users.new'] });
 
   // Items
   // ---------------------------------------------------------------------------
@@ -62,8 +70,9 @@ export default function (injectDeps, { FlowRouter }) {
   FlowRouter.route('/logout', {
     name: 'users.logout',
     action() {
-      Meteor.logout();
-      FlowRouter.go('/');
+      Meteor.logout(() => {
+        FlowRouter.go('/');
+      });
     },
   });
 
