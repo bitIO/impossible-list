@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'react-mounter';
-import Layout from './components/MainLayout.jsx';
+import MainLayout from './components/MainLayout.jsx';
 
 import ItemList from '../items/containers/ItemList';
 import ItemEdit from '../items/containers/ItemEdit';
@@ -12,7 +12,7 @@ import CategoryList from '../items/containers/CategoryList';
 import CategoryNew from '../items/containers/CategoryNew';
 
 export default function (injectDeps, { FlowRouter }) {
-  const MainLayoutCtx = injectDeps(Layout);
+  const MainLayoutCtx = injectDeps(MainLayout);
 
   // Items
   // ---------------------------------------------------------------------------
