@@ -9,8 +9,10 @@ export default {
       if (err) {
         return LocalState.set('SAVING_ERROR', err.message);
       }
+      return LocalState;
     });
     FlowRouter.go('/categories');
+    return LocalState;
   },
 
   clearErrors({ LocalState }) {

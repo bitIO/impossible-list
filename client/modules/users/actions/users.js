@@ -6,16 +6,18 @@ export default {
     if (!password) {
       return LocalState.set('CREATE_USER_ERROR', 'Password is required.');
     }
-
     LocalState.set('CREATE_USER_ERROR', null);
 
     Accounts.createUser({ email, password });
 
     FlowRouter.go('/');
+
+    return LocalState;
   },
   clearErrors({ LocalState }) {
     LocalState.set('CREATE_USER_ERROR', null);
     LocalState.set('LOGIN_ERROR', null);
+    return LocalState;
   },
   login({ Meteor, LocalState, FlowRouter }, email, password) {
     if (!email) {
@@ -33,5 +35,6 @@ export default {
         FlowRouter.go('/');
       }
     });
+    return LocalState;
   },
 };

@@ -18,7 +18,7 @@ class Item extends React.Component {
       <CardTitle
         style={{ color }}
         avatar="https://placeimg.com/80/80/animals"
-        title={ item.name }
+        title={item.name}
         subtitle={moment(item.due).format('dddd, MMMM Do YYYY')}
       />
       <CardText>{item.description}</CardText>
@@ -30,7 +30,7 @@ class Item extends React.Component {
         />
       </CardText>
       <CardActions>
-        <Button label="Edit" href={`/edit/${ item._id }`} icon="mode_edit" />
+        <Button label="Edit" href={`/edit/${item._id}`} icon="mode_edit" />
       </CardActions>
     </Card>);
   }

@@ -9,16 +9,22 @@ export default {
       if (err) {
         return LocalState.set('SAVING_ERROR', err.message);
       }
+      return LocalState;
     });
     FlowRouter.go('/');
+
+    return LocalState;
   },
   update({ Meteor, LocalState, FlowRouter }, name, description, due, id) {
     Meteor.call('items.update', id, name, description, due, (err) => {
       if (err) {
         return LocalState.set('SAVING_ERROR', err.message);
       }
+      return LocalState;
     });
     FlowRouter.go('/');
+
+    return LocalState;
   },
 
   clearErrors({ LocalState }) {

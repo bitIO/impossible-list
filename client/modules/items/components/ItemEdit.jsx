@@ -3,7 +3,6 @@ import DatePicker from 'react-toolbox/lib/date_picker';
 import Input from 'react-toolbox/lib/input';
 import Link from 'react-toolbox/lib/link';
 import React from 'react';
-import moment from 'moment';
 
 class ItemEdit extends React.Component {
   constructor(props) {

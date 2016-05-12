@@ -15,9 +15,13 @@ const CategoryList = ({ categories }) => (
         <Panel>
           <h2>{category.name}</h2>
         </Panel>
-       </Col>
+      </Col>
     ))}
   </div>
 );
+
+CategoryList.propTypes = {
+  categories: React.PropTypes.object,
+};
 
 export default CategoryList;

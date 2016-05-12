@@ -34,13 +34,12 @@ class NewUser extends React.Component {
     if (this.props.error) {
       return (<Snackbar
         action="Dismiss"
-        active={true}
+        active
         icon="question_answer"
         label={this.props.error}
         timeout={1000}
         ref="snackbar"
         onTimeout={() => {
-          console.log('onTimeout', this);
           this.refs.snackbar.setState({
             ...this.refs.snackbar.state,
             active: false,
@@ -55,6 +54,7 @@ class NewUser extends React.Component {
         type="cancel"
       />);
     }
+    return '';
   }
 
   render() {
@@ -76,7 +76,13 @@ class NewUser extends React.Component {
           value={this.state.password}
           onChange={this.handleChange.bind(this, 'password')}
         />
-        <Button icon="input" label="Submit" raised primary onClick={this.createUser}/>
+        <Button
+          icon="input"
+          label="Submit"
+          raised
+          primary
+          onClick={this.createUser}
+        />
       </form>
     </div>);
   }

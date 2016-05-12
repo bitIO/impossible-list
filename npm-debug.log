@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/franciscocalle/.nvm/versions/node/v4.2.0/bin/node',
+1 verbose cli   '/home/franciscocalle/.nvm/versions/node/v4.2.0/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'lint' ]
+2 info using npm@3.5.2
+3 info using node@v4.2.0
+4 verbose run-script [ 'prelint', 'lint', 'postlint' ]
+5 info lifecycle impossible-list@~prelint: impossible-list@
+6 silly lifecycle impossible-list@~prelint: no script for prelint, continuing
+7 info lifecycle impossible-list@~lint: impossible-list@
+8 verbose lifecycle impossible-list@~lint: unsafe-perm in lifecycle true
+9 verbose lifecycle impossible-list@~lint: PATH: /home/franciscocalle/.nvm/versions/node/v4.2.0/lib/node_modules/npm/bin/node-gyp-bin:/home/franciscocalle/Dev/learn/impossible-list/node_modules/.bin:/usr/local/heroku/bin:/home/franciscocalle/.nvm/versions/node/v4.2.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:ANDROID_HOME/tools:ANDROID_HOME/platform-tools
+10 verbose lifecycle impossible-list@~lint: CWD: /home/franciscocalle/Dev/learn/impossible-list
+11 silly lifecycle impossible-list@~lint: Args: [ '-c', 'eslint client --ext .js --ext .jsx' ]
+12 silly lifecycle impossible-list@~lint: Returned: code: 1  signal: null
+13 info lifecycle impossible-list@~lint: Failed to exec lint script
+14 verbose stack Error: impossible-list@ lint: `eslint client --ext .js --ext .jsx`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/home/franciscocalle/.nvm/versions/node/v4.2.0/lib/node_modules/npm/lib/utils/lifecycle.js:232:16)
+14 verbose stack     at emitTwo (events.js:87:13)
+14 verbose stack     at EventEmitter.emit (events.js:172:7)
+14 verbose stack     at ChildProcess.<anonymous> (/home/franciscocalle/.nvm/versions/node/v4.2.0/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+14 verbose stack     at emitTwo (events.js:87:13)
+14 verbose stack     at ChildProcess.emit (events.js:172:7)
+14 verbose stack     at maybeClose (internal/child_process.js:818:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+15 verbose pkgid impossible-list@
+16 verbose cwd /home/franciscocalle/Dev/learn/impossible-list
+17 error Linux 3.16.0-031600-generic
+18 error argv "/home/franciscocalle/.nvm/versions/node/v4.2.0/bin/node" "/home/franciscocalle/.nvm/versions/node/v4.2.0/bin/npm" "run" "lint"
+19 error node v4.2.0
+20 error npm  v3.5.2
+21 error code ELIFECYCLE
+22 error impossible-list@ lint: `eslint client --ext .js --ext .jsx`
+22 error Exit status 1
+23 error Failed at the impossible-list@ lint script 'eslint client --ext .js --ext .jsx'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the impossible-list package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     eslint client --ext .js --ext .jsx
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs impossible-list
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls impossible-list
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
